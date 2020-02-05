@@ -97,7 +97,9 @@ BuildRequires:  ghc-yaml-devel
 # for missing dep: cborg:
 BuildRequires:  ghc-array-devel
 BuildRequires:  ghc-deepseq-devel
+%if 0%{?fedora} >= 32
 BuildRequires:  ghc-half-devel
+%endif
 BuildRequires:  ghc-primitive-devel
 # for missing dep: parsers:
 BuildRequires:  ghc-attoparsec-devel
@@ -113,7 +115,9 @@ BuildRequires:  ghc-process-devel
 %endif
 # for missing dep: serialise:
 BuildRequires:  ghc-array-devel
+%if 0%{?fedora} >= 32
 BuildRequires:  ghc-half-devel
+%endif
 BuildRequires:  ghc-hashable-devel
 BuildRequires:  ghc-primitive-devel
 BuildRequires:  ghc-time-devel
