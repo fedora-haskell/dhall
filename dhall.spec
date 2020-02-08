@@ -50,7 +50,9 @@ BuildRequires:  ghc-cryptonite-devel
 BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-directory-devel
 BuildRequires:  ghc-dotgen-devel
+%if 0%{?fedora} >= 32
 BuildRequires:  ghc-either-devel
+%endif
 BuildRequires:  ghc-exceptions-devel
 BuildRequires:  ghc-filepath-devel
 BuildRequires:  ghc-hashable-devel
@@ -127,7 +129,9 @@ BuildRequires:  ghc-containers-devel
 BuildRequires:  ghc-exceptions-devel
 BuildRequires:  ghc-filepath-devel
 BuildRequires:  ghc-optparse-applicative-devel
+%if 0%{?fedora} >= 32
 BuildRequires:  ghc-prettyprinter-devel
+%endif
 #BuildRequires:  ghc-prettyprinter-ansi-terminal-devel
 BuildRequires:  ghc-scientific-devel
 BuildRequires:  ghc-text-devel
@@ -146,7 +150,9 @@ BuildRequires:  ghc-bytestring-devel
 #BuildRequires:  ghc-dhall-json-devel
 BuildRequires:  ghc-exceptions-devel
 BuildRequires:  ghc-optparse-applicative-devel
+%if 0%{?fedora} >= 32
 BuildRequires:  ghc-prettyprinter-devel
+%endif
 #BuildRequires:  ghc-prettyprinter-ansi-terminal-devel
 BuildRequires:  ghc-text-devel
 BuildRequires:  ghc-vector-devel
