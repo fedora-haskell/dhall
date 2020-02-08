@@ -140,7 +140,9 @@ BuildRequires:  ghc-vector-devel
 
 %if %{with yaml}
 # for dhall-yaml
+%if 0%{?fedora} >= 31
 BuildRequires:  ghc-HsYAML-devel
+%endif
 #BuildRequires:  ghc-HsYAML-aeson-devel
 BuildRequires:  ghc-aeson-devel
 BuildRequires:  ghc-ansi-terminal-devel
