@@ -110,57 +110,6 @@ BuildRequires:  ghc-half-devel
 BuildRequires:  ghc-primitive-devel
 BuildRequires:  ghc-time-devel
 
-%if %{with json}
-# for dhall-json
-BuildRequires:  ghc-aeson-devel
-BuildRequires:  ghc-aeson-pretty-devel
-#BuildRequires:  ghc-aeson-yaml-devel
-BuildRequires:  ghc-ansi-terminal-devel
-BuildRequires:  ghc-base-devel
-BuildRequires:  ghc-bytestring-devel
-BuildRequires:  ghc-containers-devel
-#BuildRequires:  ghc-dhall-devel
-BuildRequires:  ghc-exceptions-devel
-BuildRequires:  ghc-filepath-devel
-BuildRequires:  ghc-optparse-applicative-devel
-%if 0%{?fedora} >= 32
-BuildRequires:  ghc-prettyprinter-devel
-%endif
-#BuildRequires:  ghc-prettyprinter-ansi-terminal-devel
-BuildRequires:  ghc-scientific-devel
-BuildRequires:  ghc-text-devel
-BuildRequires:  ghc-unordered-containers-devel
-BuildRequires:  ghc-vector-devel
-
-%if %{with yaml}
-# for dhall-yaml
-%if 0%{?fedora} >= 31
-BuildRequires:  ghc-HsYAML-devel
-%endif
-#BuildRequires:  ghc-HsYAML-aeson-devel
-BuildRequires:  ghc-aeson-devel
-BuildRequires:  ghc-ansi-terminal-devel
-BuildRequires:  ghc-base-devel
-BuildRequires:  ghc-bytestring-devel
-#BuildRequires:  ghc-dhall-devel
-#BuildRequires:  ghc-dhall-json-devel
-BuildRequires:  ghc-exceptions-devel
-BuildRequires:  ghc-optparse-applicative-devel
-%if 0%{?fedora} >= 32
-BuildRequires:  ghc-prettyprinter-devel
-%endif
-#BuildRequires:  ghc-prettyprinter-ansi-terminal-devel
-BuildRequires:  ghc-text-devel
-BuildRequires:  ghc-vector-devel
-BuildRequires:  cabal-install > 1.18
-# for missing dep 'HsYAML-aeson':
-BuildRequires:  ghc-containers-devel
-BuildRequires:  ghc-mtl-devel
-BuildRequires:  ghc-scientific-devel
-BuildRequires:  ghc-unordered-containers-devel
-%endif
-%endif
-
 %description
 Dhall is an explicitly typed configuration language that is not Turing
 complete. Despite being Turing incomplete, Dhall is a real programming language
@@ -177,12 +126,20 @@ cp -bp %{SOURCE1} %{name}.cabal
 %build
 # Begin cabal-rpm build:
 cabal update
+%if 0%{fedora} < 33
+cabal sandbox init
+cabal install
+%endif
 # End cabal-rpm build
 
 
 %install
 mkdir -p %{buildroot}%{_bindir}
+%if 0%{fedora} >= 33
 cabal install --install-method=copy --installdir=%{buildroot}%{_bindir}
+%else
+strip -s -o %{buildroot}%{_bindir}/dhall .cabal-sandbox/bin/dhall
+%endif
 # Begin cabal-rpm install
 mkdir -p %{buildroot}%{_datadir}/bash-completion/completions/
 %{buildroot}%{_bindir}/%{name} --bash-completion-script %{name} > %{buildroot}%{_datadir}/bash-completion/completions/%{name}
