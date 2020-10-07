@@ -33,16 +33,22 @@ BuildRequires:  ghc-Diff-devel
 BuildRequires:  ghc-aeson-devel
 BuildRequires:  ghc-aeson-pretty-devel
 BuildRequires:  ghc-ansi-terminal-devel
+%if 0%{?fedora} >= 32
 BuildRequires:  ghc-atomic-write-devel
+%endif
 BuildRequires:  ghc-base-devel
 BuildRequires:  ghc-bytestring-devel
 BuildRequires:  ghc-case-insensitive-devel
+%if 0%{?fedora} >= 32
 BuildRequires:  ghc-cborg-devel
 BuildRequires:  ghc-cborg-json-devel
+%endif
 BuildRequires:  ghc-containers-devel
 BuildRequires:  ghc-contravariant-devel
 BuildRequires:  ghc-cryptonite-devel
+%if 0%{?fedora} >= 32
 BuildRequires:  ghc-data-fix-devel
+%endif
 BuildRequires:  ghc-deepseq-devel
 BuildRequires:  ghc-directory-devel
 BuildRequires:  ghc-dotgen-devel
@@ -63,17 +69,23 @@ BuildRequires:  ghc-mtl-devel
 BuildRequires:  ghc-network-uri-devel
 BuildRequires:  ghc-optparse-applicative-devel
 BuildRequires:  ghc-parser-combinators-devel
+%if 0%{?fedora} >= 32
 BuildRequires:  ghc-parsers-devel
 BuildRequires:  ghc-pretty-simple-devel
+%endif
 BuildRequires:  ghc-prettyprinter-devel
 BuildRequires:  ghc-prettyprinter-ansi-terminal-devel
 BuildRequires:  ghc-profunctors-devel
 BuildRequires:  ghc-repline-devel
 BuildRequires:  ghc-scientific-devel
+%if 0%{?fedora} >= 32
 BuildRequires:  ghc-serialise-devel
+%endif
 BuildRequires:  ghc-template-haskell-devel
 BuildRequires:  ghc-text-devel
+%if 0%{?fedora} >= 32
 BuildRequires:  ghc-text-manipulate-devel
+%endif
 BuildRequires:  ghc-th-lift-instances-devel
 BuildRequires:  ghc-transformers-devel
 BuildRequires:  ghc-transformers-compat-devel
@@ -81,14 +93,12 @@ BuildRequires:  ghc-unordered-containers-devel
 BuildRequires:  ghc-uri-encode-devel
 BuildRequires:  ghc-vector-devel
 BuildRequires:  cabal-install > 1.18
+%if 0%{?fedora} < 32
 # for missing dep 'atomic-write':
 BuildRequires:  ghc-temporary-devel
 BuildRequires:  ghc-unix-compat-devel
 # for missing dep 'cborg':
 BuildRequires:  ghc-array-devel
-%if 0%{?fedora} >= 32
-BuildRequires:  ghc-half-devel
-%endif
 BuildRequires:  ghc-primitive-devel
 # for missing dep 'parsers':
 BuildRequires:  ghc-attoparsec-devel
@@ -97,18 +107,11 @@ BuildRequires:  ghc-binary-devel
 BuildRequires:  ghc-charset-devel
 BuildRequires:  ghc-parsec-devel
 BuildRequires:  ghc-semigroups-devel
-%if 0%{?fedora} < 32
-# for missing dep: repline:
-#BuildRequires:  ghc-fail-devel
-BuildRequires:  ghc-process-devel
-%endif
 # for missing dep 'serialise':
 BuildRequires:  ghc-array-devel
-%if 0%{?fedora} >= 32
-BuildRequires:  ghc-half-devel
-%endif
 BuildRequires:  ghc-primitive-devel
 BuildRequires:  ghc-time-devel
+%endif
 
 %description
 Dhall is an explicitly typed configuration language that is not Turing
